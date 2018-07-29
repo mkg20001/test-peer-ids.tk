@@ -6,7 +6,8 @@
 /* Config */
 
 const production = process.env.NODE_ENV === 'production'
-const commonPairs = production ? [['rsa', 16384], ['rsa', 8192], ['rsa', 4096], ['rsa', 2048], ['rsa', 1024], ['rsa', 512]] : [['rsa', 1024]]
+const commonPairs = production ? [['rsa', 4096], ['rsa', 2048], ['rsa', 1024], ['rsa', 512]] : [['rsa', 1024]]
+const uncommonPairs = production ? [['rsa', 16384], ['rsa', 8192]] : []
 const commonCache = production ? 100 : 10
 const uncommonCache = production ? 10 : 2
 
@@ -124,6 +125,7 @@ if (cluster.isMaster) {
 
   const init = async () => {
     commonPairs.forEach(pair => prepareCache(...pair))
+    uncommonPairs.forEach(pair => prepareCache(...pair))
     await fillCache()
     await server.register(require('inert'))
     await server.start()
