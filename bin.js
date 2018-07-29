@@ -142,6 +142,9 @@ if (cluster.isMaster) {
     if (TYPES.indexOf(request.params.type) === -1) {
       return h.response({error: 'Type not supported', code: 'EUNSUPPORTED'}).status(400)
     }
+    if (request.params.type === 'rsa' && (bits > 16384 || bits < 512)) {
+      return h.response({error: 'Bits count too small/big', code: 'EBITSUNSUPPORTED'}).status(400)
+    }
 
     return getKey(request.params.type, request.params.bits)
   }
