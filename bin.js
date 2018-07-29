@@ -137,13 +137,13 @@ if (cluster.isMaster) {
   const handler = async (request, h) => {
     let bits = parseInt(request.params.bits, 10)
     if (isNaN(bits)) {
-      return h.response({error: 'Bits is not a number', code: 'EBITSNAN'}).status(400)
+      return h.response({error: 'Bits is not a number', code: 'EBITSNAN'}).code(400)
     }
     if (TYPES.indexOf(request.params.type) === -1) {
-      return h.response({error: 'Type not supported', code: 'EUNSUPPORTED'}).status(400)
+      return h.response({error: 'Type not supported', code: 'EUNSUPPORTED'}).code(400)
     }
     if (request.params.type === 'rsa' && (bits > 16384 || bits < 512)) {
-      return h.response({error: 'Bits count too small/big', code: 'EBITSUNSUPPORTED'}).status(400)
+      return h.response({error: 'Bits count too small/big', code: 'EBITSUNSUPPORTED'}).code(400)
     }
 
     return getKey(request.params.type, request.params.bits)
