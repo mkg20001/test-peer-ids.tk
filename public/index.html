@@ -1,0 +1,89 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>Test Peer IDs</title>
+  <link rel="stylesheet" href="./page.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <style>
+    tt {
+      background: #afafaf;
+      padding: 2em;
+      border-radius: 2px;
+      text-align: left !important;
+    }
+
+    .icon-big {
+      font-size: 5em;
+      color: #0b0b0b88;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">test-peer-ids.tk</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rsa/4096">RSA 4k</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rsa/8192">RSA 8k</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rsa/16384">RSA 16k</a>
+        </li>
+      </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="https://mkg20001.io"><button class="btn my-2 my-sm-0">made by mkg20001</button></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <center>
+      <br><br>
+      <h1>Peer IDs without the waiting</h1>
+      <h2>Speed up peer-id generation by utlizing test-peer-ids.tk</h2>
+      <p style="font-size: .75em;">Not Recommended for production usage</p>
+
+      <br><br>
+      <h1>Why?</h1>
+      <br><br>
+      <div class="row">
+        <div class="col-md-6">
+          <i class="fa fa-key icon-big"></i>
+          <h4><br>Get 4k, 8k or even 16k keys<br>in seconds</h4>
+        </div>
+        <div class="col-md-6">
+          <i class="fa fa-bolt icon-big"></i>
+          <h4><br>Make your tests run<br>lightning fast</h4>
+        </div>
+      </div>
+
+      <br><br>
+      <h1>API</h1>
+      <i class="fa fa-code icon-big"></i>
+      <br><br><br><br>
+      <tt>GET  /:type/:size</tt>
+      <tt>POST /:type/:size</tt>
+      <br><br><br><br>
+      <br><br><br><br>
+    </center>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+</body>
+
+</html>

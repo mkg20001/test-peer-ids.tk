@@ -1,0 +1,21 @@
+{
+  "name": "test-peer-ids.tk",
+  "version": "0.0.1",
+  "description": "A simple site to get peer-ids for testing without waiting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "peer-id",
+    "cache",
+    "api"
+  ],
+  "author": "Maciej Krüger <mkg20001@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "hapi": "^17.5.2",
+    "peer-id": "^0.11.0"
+  }
+}
