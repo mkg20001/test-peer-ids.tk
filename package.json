@@ -3,6 +3,12 @@
   "version": "0.0.1",
   "description": "A simple site to get peer-ids for testing without waiting",
   "main": "index.js",
+  "bin": {
+    "test-peer-ids.tk": "bin.js"
+  },
+  "pkg": {
+    "assets": "public/**"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +22,8 @@
   "dependencies": {
     "debug": "^3.1.0",
     "hapi": "^17.5.2",
+    "inert": "^5.1.0",
     "peer-id": "^0.11.0"
-  }
+  },
+  "devDependencies": {}
 }

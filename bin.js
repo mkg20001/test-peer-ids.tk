@@ -15,6 +15,7 @@ const uncommonCache = production ? 10 : 2
 const Hapi = require('hapi')
 const cluster = require('cluster')
 const numCPUs = require('os').cpus().length
+const path = require('path')
 
 const debug = require('debug')
 const log = debug('test-peer-ids#' + process.pid)
@@ -117,13 +118,14 @@ if (cluster.isMaster) {
   })
 
   const server = Hapi.server({
-    port: 3000,
+    port: 5484,
     host: 'localhost'
   })
 
   const init = async () => {
     commonPairs.forEach(pair => prepareCache(...pair))
     await fillCache()
+    await server.register(require('inert'))
     await server.start()
     console.log(`Server running at: ${server.info.uri}`)
   }
@@ -152,6 +154,12 @@ if (cluster.isMaster) {
     method: 'POST',
     path: '/{type}/{bits}',
     handler
+  })
+
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: (request, h) => h.file(path.join(__dirname, 'public/index.html'), {confine: false})
   })
 
   init()
