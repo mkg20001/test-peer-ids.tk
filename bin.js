@@ -128,7 +128,7 @@ if (cluster.isMaster) {
     uncommonPairs.forEach(pair => prepareCache(...pair))
     await fillCache()
     await server.register(require('inert'))
-    await server.register({register: require('hapi-pino'), options: {name: 'test-peer-ids.tk'}})
+    await server.register({plugin: require('hapi-pino'), options: {name: 'test-peer-ids.tk'}})
     await server.start()
     console.log(`Server running at: ${server.info.uri}`)
   }
