@@ -120,7 +120,7 @@ if (cluster.isMaster) {
 
   const server = Hapi.server({
     port: 5484,
-    host: 'localhost'
+    host: '::'
   })
 
   const init = async () => {
