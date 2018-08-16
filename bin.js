@@ -17,7 +17,7 @@ const uncommonCache = production ? 10 : 2
 
 const Hapi = require('hapi')
 const cluster = require('cluster')
-const numCPUs = require('os').cpus().length
+const numCPUs = process.env.TPIDS_CPU ? parseInt(process.env.TPIDS_CPU, 10) : require('os').cpus().length
 const path = require('path')
 
 const debug = require('debug')
