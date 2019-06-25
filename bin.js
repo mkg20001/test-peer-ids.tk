@@ -15,7 +15,7 @@ const uncommonCache = production ? 10 : 2
 
 /* Code */
 
-const Hapi = require('hapi')
+const Hapi = require('@hapi/hapi')
 const cluster = require('cluster')
 const numCPUs = process.env.TPIDS_CPU ? parseInt(process.env.TPIDS_CPU, 10) : require('os').cpus().length
 const path = require('path')
@@ -129,7 +129,7 @@ if (cluster.isMaster) {
     commonPairs.forEach(pair => prepareCache(...pair))
     uncommonPairs.forEach(pair => prepareCache(...pair))
     await fillCache()
-    await server.register(require('inert'))
+    await server.register(require('@hapi/inert'))
     await server.register({plugin: require('hapi-pino'), options: {name: 'test-peer-ids.tk'}})
     await server.start()
     console.log(`Server running at: ${server.info.uri}`)
