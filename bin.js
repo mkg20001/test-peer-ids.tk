@@ -135,7 +135,7 @@ if (cluster.isMaster) {
     console.log(`Server running at: ${server.info.uri}`)
   }
 
-  const TYPES = ['rsa']
+  const TYPES = ['rsa', 'secp256k1']
 
   const handler = async (request, h) => {
     let bits = parseInt(request.params.bits, 10)
@@ -145,7 +145,7 @@ if (cluster.isMaster) {
     if (TYPES.indexOf(request.params.type) === -1) {
       return h.response({error: 'Type not supported', code: 'EUNSUPPORTED'}).code(400)
     }
-    if (request.params.type === 'rsa' && (bits > 16384 || bits < 512)) {
+    if (bits > 16384 || bits < 512) {
       return h.response({error: 'Bits count too small/big', code: 'EBITSUNSUPPORTED'}).code(400)
     }
 
@@ -173,23 +173,24 @@ if (cluster.isMaster) {
   init()
 } else {
   process.on('message', (msg) => {
-    msg.forEach(m => {
+    msg.forEach(async (m) => {
       switch (m.type) {
-        case 'work':
-          Id.create(...m.args, (err, key) => {
-            log('get work %o', m)
-            let msg = {type: 'result', id: m.id}
-            if (err) {
-              msg.action = 'reject'
-              msg.result = err
-            } else {
-              msg.action = 'resolve'
-              msg.result = key.toJSON()
-            }
-            log('done work %o', msg.action)
-            process.send([msg, {type: 'ready'}])
-          })
+        case 'work': {
+          let msg = {type: 'result', id: m.id}
+          log('get work %o', m)
+          try {
+            const key = await Id.create(...m.args)
+            msg.action = 'resolve'
+            msg.result = key.toJSON()
+          } catch (err) {
+            msg.action = 'reject'
+            msg.result = err
+            log(err)
+          }
+          log('done work %o', msg.action)
+          process.send([msg, {type: 'ready'}])
           break
+        }
         case 'exit':
           return process.exit(0)
         default: throw new TypeError(m.type)

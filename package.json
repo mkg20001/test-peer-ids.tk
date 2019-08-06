@@ -23,9 +23,10 @@
     "@hapi/hapi": "^18.3.1",
     "@hapi/inert": "^5.2.1",
     "debug": "^4.1.1",
-    "hapi-pino": "^6.0.1",
-    "libp2p-crypto": "^0.16.1",
-    "peer-id": "^0.12.2"
+    "hapi-pino": "^6.0.2",
+    "libp2p-crypto": "^0.17.0",
+    "libp2p-crypto-secp256k1": "^0.4.0",
+    "peer-id": "^0.13.2"
   },
   "devDependencies": {}
 }
